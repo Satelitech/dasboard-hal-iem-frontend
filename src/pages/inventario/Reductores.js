@@ -15,6 +15,7 @@ import {
   MenuItem,
   TableContainer,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Reductores = () => {
   const [reductores, setReductores] = useState([
@@ -40,6 +41,7 @@ const Reductores = () => {
       condicionReductor: 1,
     },
   ]);
+  const navigate = useNavigate();
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
@@ -69,7 +71,11 @@ const Reductores = () => {
           </Thead>
           <Tbody>
             {reductores.map((reductor) => (
-              <Tr>
+              <Tr
+                cursor={"pointer"}
+                key={reductor._id}
+                onClick={() => navigate(`${reductor.nombreReductor}`)}
+              >
                 <Td>{reductor.nombreReductor}</Td>
                 <Td>{reductor.bombaVinculada}</Td>
                 <Td>{reductor.horasReductor}</Td>

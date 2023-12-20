@@ -15,6 +15,7 @@ import {
   MenuItem,
   TableContainer,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const PowerEnd = () => {
   const [pwrEnd, setPwrEnd] = useState([
@@ -40,6 +41,7 @@ const PowerEnd = () => {
       condicionPwrEnd: 1,
     },
   ]);
+  const navigate = useNavigate();
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
@@ -69,7 +71,11 @@ const PowerEnd = () => {
           </Thead>
           <Tbody>
             {pwrEnd.map((power) => (
-              <Tr key={power._id}>
+              <Tr
+                cursor={"pointer"}
+                key={power._id}
+                onClick={() => navigate(`${power.nombrePwrEnd}`)}
+              >
                 <Td>{power.nombrePwrEnd}</Td>
                 <Td>{power.bombaVinculada}</Td>
                 <Td>{power.horasPwrEnd}</Td>

@@ -16,6 +16,9 @@ import Backlog from "../inventario/Backlog";
 import Layout from "../layout/Layout";
 import Detalle from "../sets/components/Detalle";
 import DetalleMotor from "../inventario/components/motores/DetalleMotor";
+import DetalleTransmisiones from "../inventario/components/transmisiones/DetalleTransmisiones";
+import DetallePowerEnd from "../inventario/components/powerend/DetallePowerEnd";
+import DetalleReductores from "../inventario/components/reductores/DetalleReductores";
 
 const Routing = () => {
   const { user } = useSelector((state) => state.user);
@@ -49,8 +52,17 @@ const Routing = () => {
           <Route path="motores" element={<Motores />} />
           <Route path="motores/:nombreMotor" element={<DetalleMotor />} />
           <Route path="transmisiones" element={<Transmisiones />} />
+          <Route
+            path="transmisiones/:nombreTransmision"
+            element={<DetalleTransmisiones />}
+          />
           <Route path="powerend" element={<PowerEnd />} />
+          <Route path="powerend/:nombrePwrEnd" element={<DetallePowerEnd />} />
           <Route path="reductores" element={<Reductores />} />
+          <Route
+            path="reductores/:nombreReductor"
+            element={<DetalleReductores />}
+          />
           <Route path="fleetstatus" element={<FleetStatus />} />
           <Route path="fieldmantenience" element={<FieldMantenience />} />
           <Route path="aneloyard" element={<AneloYard />} />

@@ -13,9 +13,9 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Transmisiones = () => {
   const [transmisiones, setTransmisiones] = useState([
@@ -41,6 +41,7 @@ const Transmisiones = () => {
       condicionTransmision: 1,
     },
   ]);
+  const navigate = useNavigate();
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
@@ -68,7 +69,11 @@ const Transmisiones = () => {
           </Thead>
           <Tbody>
             {transmisiones.map((transmision) => (
-              <Tr>
+              <Tr
+                cursor={"pointer"}
+                key={transmision._id}
+                onClick={() => navigate(`${transmision.nombreTransmision}`)}
+              >
                 <Td>{transmision.nombreTransmision}</Td>
                 <Td>{transmision.bombaVinculada}</Td>
                 <Td>{transmision.horasTransmision}</Td>

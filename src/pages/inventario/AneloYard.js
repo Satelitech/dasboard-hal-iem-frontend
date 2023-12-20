@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Stack,
   Card,
@@ -6,9 +6,17 @@ import {
   CardHeader,
   HStack,
   Text,
+  VStack,
+  Heading,
+  Divider,
 } from "@chakra-ui/react";
+import BoxVacio from "./components/aneloyard/BoxVacio";
+import BoxActivo from "./components/aneloyard/BoxActivo";
 
 const AneloYard = () => {
+  const [activos, setActivos] = useState([]);
+  const [vacios, setVacios] = useState([]);
+
   const [boxes, setBoxes] = useState([
     {
       name: "Box 1",
@@ -18,6 +26,11 @@ const AneloYard = () => {
           _id: 1,
           nombreBomba: "ejemplo1",
           descripcion: "mantenimiento",
+        },
+        {
+          _id: 5,
+          nombreBomba: "ejemplo 5",
+          descripcion: "Revision",
         },
       ],
     },
@@ -50,145 +63,35 @@ const AneloYard = () => {
     { name: "Box 8", _id: 8, bombas: [] },
   ]);
 
+  const handleSplitBoxes = () => {
+    setActivos(boxes.filter((box) => box.bombas.length > 0));
+    setVacios(boxes.filter((box) => box.bombas.length < 1));
+  };
+
+  useEffect(() => {
+    handleSplitBoxes();
+  }, []);
+
   return (
-    <Stack w={"100%"} h={"100%"}>
-      <HStack spacing={10} justifyContent={"center"}>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader textAlign={"center"} border={"1px solid black"}>
-            Box 1
-          </CardHeader>
-          {boxes[0].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader textAlign={"center"} border={"1px solid black"}>
-            Box 2
-          </CardHeader>
-          {boxes[1].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-      </HStack>
-      <HStack spacing={10} justifyContent={"center"}>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader textAlign={"center"} border={"1px solid black"}>
-            Box 3
-          </CardHeader>
-          {boxes[2].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader>Box 4</CardHeader>
-          {boxes[3].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-      </HStack>
-      <HStack spacing={10} justifyContent={"center"}>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader textAlign={"center"} border={"1px solid black"}>
-            Box 5
-          </CardHeader>
-          {boxes[4].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader>Box 6</CardHeader>
-          {boxes[5].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-      </HStack>
-      <HStack spacing={10} justifyContent={"center"}>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader textAlign={"center"} border={"1px solid black"}>
-            Box 7
-          </CardHeader>
-          {boxes[6].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
-        <Card w={"md"} size={"sm"}>
-          <CardHeader>Box 8</CardHeader>
-          {boxes[7].bombas.map((bomba) => (
-            <CardBody>
-              <HStack>
-                <Text fontWeight={"bold"}>Bomba: </Text>
-                <Text>{bomba.nombreBomba}</Text>
-              </HStack>
-              <HStack>
-                <Text fontWeight={"bold"}>Tarea: </Text>
-                <Text>{bomba.descripcion}</Text>
-              </HStack>
-            </CardBody>
-          ))}
-        </Card>
+    <Stack w={"100%"} h={"100%"} overflowY={"auto"}>
+      <HStack w={"100%"} spacing={7}>
+        <Stack justifyContent={"start"} h={"xl"}>
+          <Heading size={"sm"}>Vacios</Heading>
+          <Stack spacing={4}>
+            {vacios.map((vacio) => (
+              <BoxVacio vacio={vacio} />
+            ))}
+          </Stack>
+        </Stack>
+        <Divider orientation="vertical" h={"100%"} />
+        <VStack justifyContent={"start"} h={"xl"}>
+          <Heading size={"sm"}>Activos</Heading>
+          <Stack spacing={4}>
+            {activos.map((box) => (
+              <BoxActivo box={box} />
+            ))}
+          </Stack>
+        </VStack>
       </HStack>
     </Stack>
   );
