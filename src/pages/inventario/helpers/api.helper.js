@@ -46,19 +46,76 @@ export const getSets = (params) => {
     return error.response;
   }
 };
+
 export const getMotores = (params) => {
   let response;
   try {
     response = {
       status: 200,
       data: [
-        { _id: 1, nombre: "Bomba 1", hsBomba: 19234, condicion: 3 },
-        { _id: 2, nombre: "Bomba 2", hsBomba: 19234, condicion: 3 },
-        { _id: 3, nombre: "Bomba 3", hsBomba: 19234, condicion: 3 },
-        { _id: 4, nombre: "Bomba 4", hsBomba: 19234, condicion: 3 },
-        { _id: 5, nombre: "Bomba 5", hsBomba: 19234, condicion: 3 },
-        { _id: 6, nombre: "Bomba 6", hsBomba: 19234, condicion: 3 },
-        { _id: 7, nombre: "Bomba 7", hsBomba: 19234, condicion: 3 },
+        {
+          _id: 1,
+          nombre: "Bomba 1",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 1",
+          servicio: "En funcionamiento",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+        },
+        {
+          _id: 2,
+          nombre: "Bomba 2",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 2",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En mantenimiento",
+        },
+        {
+          _id: 3,
+          nombre: "Bomba 3",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 3",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En reparacion",
+        },
+        {
+          _id: 4,
+          nombre: "Bomba 4",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 2",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En funcionamiento",
+        },
+        {
+          _id: 5,
+          nombre: "Bomba 5",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 1",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En reparacion",
+        },
+        {
+          _id: 6,
+          nombre: "Bomba 6",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 3",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En mantenimiento",
+        },
+        {
+          _id: 7,
+          nombre: "Bomba 7",
+          hsBomba: 19234,
+          condicion: 3,
+          set: "Set 1",
+          info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          servicio: "En funcionamiento",
+        },
       ],
     };
     return response;

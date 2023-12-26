@@ -35,7 +35,7 @@ const Layout = (props) => {
 
   useEffect(() => {
     initData();
-  });
+  }, []);
 
   return (
     <Stack w="100%" h={"100vh"}>

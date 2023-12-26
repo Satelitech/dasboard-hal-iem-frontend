@@ -17,7 +17,7 @@ const Equipos = () => {
 
   useEffect(() => {
     initData();
-  });
+  }, []);
 
   return (
     <HStack w={"100%"} spacing={7} p={3} wrap={"wrap"}>
