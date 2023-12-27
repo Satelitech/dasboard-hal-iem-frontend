@@ -61,6 +61,7 @@ export const getMotores = (params) => {
           set: "Set 1",
           servicio: "En funcionamiento",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
         },
         {
           _id: 2,
@@ -69,6 +70,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 2",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En mantenimiento",
         },
         {
@@ -78,6 +81,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 3",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En reparacion",
         },
         {
@@ -87,6 +92,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 2",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En funcionamiento",
         },
         {
@@ -96,6 +103,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 1",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En reparacion",
         },
         {
@@ -105,6 +114,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 3",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En mantenimiento",
         },
         {
@@ -114,6 +125,8 @@ export const getMotores = (params) => {
           condicion: 3,
           set: "Set 1",
           info: "TRLR PUMP Q10-X 2000 HHP CVRSN",
+          estado: "montado",
+
           servicio: "En funcionamiento",
         },
       ],

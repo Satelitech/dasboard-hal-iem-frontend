@@ -5,17 +5,18 @@ import {
   Thead,
   Tbody,
   HStack,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
+  IconButton,
   Tr,
   Th,
   Td,
   TableContainer,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineInfo, MdBlock } from "react-icons/md";
+import CrearTransmision from "./components/transmisiones/CrearTransmision";
+import EditarTransmision from "./components/transmisiones/EditarTransmision";
+import InhabilitarComponente from "./components/InhabilitarComponente";
 
 const Transmisiones = () => {
   const [transmisiones, setTransmisiones] = useState([
@@ -25,6 +26,7 @@ const Transmisiones = () => {
       bombaVinculada: "11317872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasTransmision: 19127,
       condicionTransmision: 3,
+      habilitado: true,
     },
     {
       _id: 2,
@@ -32,6 +34,7 @@ const Transmisiones = () => {
       bombaVinculada: "10000872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasTransmision: 19127,
       condicionTransmision: 2,
+      habilitado: true,
     },
     {
       _id: 3,
@@ -39,23 +42,14 @@ const Transmisiones = () => {
       bombaVinculada: "11317000 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasTransmision: 19127,
       condicionTransmision: 1,
+      habilitado: true,
     },
   ]);
   const navigate = useNavigate();
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
-        <Menu>
-          <MenuButton as={Button} variant={"link"}>
-            Acciones
-          </MenuButton>
-          <MenuList>
-            <MenuItem fontSize={"12px"}>CARGAR OVH</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR REPARACION</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR REGULACION DE VALV</MenuItem>
-            <MenuItem fontSize={"12px"}> SOLICITAR MANTENIMIENTO</MenuItem>
-          </MenuList>
-        </Menu>
+        <CrearTransmision />
       </HStack>
       <TableContainer>
         <Table variant="simple" size="sm" h="max-content">
@@ -65,19 +59,30 @@ const Transmisiones = () => {
               <Th>Bomba Vinculada</Th>
               <Th>Horas</Th>
               <Th>Condicion</Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {transmisiones.map((transmision) => (
-              <Tr
-                cursor={"pointer"}
-                key={transmision._id}
-                onClick={() => navigate(`${transmision.nombreTransmision}`)}
-              >
+              <Tr key={transmision._id}>
                 <Td>{transmision.nombreTransmision}</Td>
                 <Td>{transmision.bombaVinculada}</Td>
                 <Td>{transmision.horasTransmision}</Td>
                 <Td>{transmision.condicionTransmision}</Td>
+                <Td>
+                  <Tooltip label="Detalles">
+                    <IconButton
+                      cursor={"pointer"}
+                      variant={"link"}
+                      icon={<MdOutlineInfo />}
+                      onClick={() =>
+                        navigate(`${transmision.nombreTransmision}`)
+                      }
+                    />
+                  </Tooltip>
+                  <EditarTransmision seleccionado={transmision} />
+                  <InhabilitarComponente seleccionado={transmision} />
+                </Td>
               </Tr>
             ))}
           </Tbody>

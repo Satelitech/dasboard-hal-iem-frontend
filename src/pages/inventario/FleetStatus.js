@@ -207,9 +207,38 @@ const FleetStatus = () => {
                 </Td>
                 <Td>19127</Td>
                 <Td>
-                  <Select />
+                  <Select
+                    placeholder="- Estado -"
+                    size="xs"
+                    variant="filled"
+                    value={bomba.estado}
+                  >
+                    <option value={"montado"}>Montado</option>
+                    <option value={"enMantenimiento"}>En mantenimiento</option>
+                    <option value={"esperandRepuestos"}>
+                      Esperando repuestos
+                    </option>
+                    <option value={"esperandoDecision"}>
+                      Esperando decision
+                    </option>
+                    <option value={"desmontado"}>Desmontado</option>
+                  </Select>
                 </Td>
-                <Td>SET 2</Td>
+                <Td>
+                  {bomba.estado === "montado" && bomba.set}
+                  {bomba.estado !== "montado" && (
+                    <Select
+                      placeholder="- Ubicacion -"
+                      size="xs"
+                      variant="filled"
+                    >
+                      <option>Base Añelo</option>
+                      <option>MTU</option>
+                      <option>Hidromec</option>
+                      <option>- Otro -</option>
+                    </Select>
+                  )}
+                </Td>
               </Tr>
             ))}
           </Tbody>

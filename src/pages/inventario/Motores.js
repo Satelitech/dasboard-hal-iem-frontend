@@ -9,13 +9,12 @@ import {
   Td,
   TableContainer,
   HStack,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
+  IconButton,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import FormCrearEditarMotor from "./components/motores/CrearMotor";
+import EditarMotor from "./components/motores/EditarMotor";
+import { MdOutlineInfo } from "react-icons/md";
 
 const Motores = () => {
   const [motores, setMotores] = useState([
@@ -25,6 +24,7 @@ const Motores = () => {
       bombaVinculada: "11317872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasMotor: 19127,
       condicionMotor: 3,
+      habilitado: true,
     },
     {
       _id: 2,
@@ -32,6 +32,7 @@ const Motores = () => {
       bombaVinculada: "10000872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasMotor: 19127,
       condicionMotor: 2,
+      habilitado: true,
     },
     {
       _id: 3,
@@ -39,6 +40,7 @@ const Motores = () => {
       bombaVinculada: "11317000 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasMotor: 19127,
       condicionMotor: 1,
+      habilitado: true,
     },
   ]);
   const navigate = useNavigate();
@@ -46,18 +48,7 @@ const Motores = () => {
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
-        <Menu>
-          <MenuButton as={Button} variant={"link"}>
-            Acciones
-          </MenuButton>
-          <MenuList>
-            <MenuItem fontSize={"12px"}>CARGAR OVH</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR MIDLIFE-TOP END</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR MANTENIMIENTO</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR REGULACION DE VALV</MenuItem>
-            <MenuItem fontSize={"12px"}> SOLICITAR MANTENIMIENTO</MenuItem>
-          </MenuList>
-        </Menu>
+        <FormCrearEditarMotor />
       </HStack>
       <TableContainer>
         <Table variant="simple" size="sm" h="max-content">
@@ -67,19 +58,25 @@ const Motores = () => {
               <Th>Bomba Vinculada</Th>
               <Th>Horas</Th>
               <Th>Condicion</Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {motores.map((motor) => (
-              <Tr
-                cursor={"pointer"}
-                key={motor._id}
-                onClick={() => navigate(`${motor.nombreMotor}`)}
-              >
+              <Tr key={motor._id}>
                 <Td>{motor.nombreMotor}</Td>
                 <Td>{motor.bombaVinculada}</Td>
                 <Td>{motor.horasMotor}</Td>
                 <Td>{motor.condicionMotor}</Td>
+                <Td>
+                  <IconButton
+                    cursor={"pointer"}
+                    variant={"link"}
+                    icon={<MdOutlineInfo />}
+                    onClick={() => navigate(`${motor.nombreMotor}`)}
+                  />
+                  <EditarMotor seleccionado={motor} />
+                </Td>
               </Tr>
             ))}
           </Tbody>

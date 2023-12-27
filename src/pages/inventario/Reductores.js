@@ -9,13 +9,13 @@ import {
   Td,
   HStack,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   TableContainer,
+  IconButton,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineInfo } from "react-icons/md";
+import EditarReductor from "./components/reductores/EditarReductor";
+import CrearReductor from "./components/reductores/CrearReductor";
 
 const Reductores = () => {
   const [reductores, setReductores] = useState([
@@ -25,6 +25,7 @@ const Reductores = () => {
       bombaVinculada: "11317872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasReductor: 19127,
       condicionReductor: 3,
+      habilitado: true,
     },
     {
       _id: 2,
@@ -32,6 +33,7 @@ const Reductores = () => {
       bombaVinculada: "10000872 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasReductor: 19127,
       condicionReductor: 2,
+      habilitado: true,
     },
     {
       _id: 3,
@@ -39,25 +41,14 @@ const Reductores = () => {
       bombaVinculada: "11317000 TRLR PUMP Q10-X 2000 HHP CVRSN",
       horasReductor: 19127,
       condicionReductor: 1,
+      habilitado: true,
     },
   ]);
   const navigate = useNavigate();
   return (
     <Stack w={"100%"} h={"100%"}>
       <HStack w={"100%"} justifyContent={"end"} px={3}>
-        <Menu>
-          <MenuButton as={Button} variant={"link"}>
-            Acciones
-          </MenuButton>
-          <MenuList>
-            <MenuItem fontSize={"12px"}>CARGAR OVH</MenuItem>
-            <MenuItem fontSize={"12px"}>CARGAR REPARACION</MenuItem>
-            <MenuItem fontSize={"12px"}>
-              CARGAR MEDICION DE JUEGO AXIAL
-            </MenuItem>
-            <MenuItem fontSize={"12px"}> SOLICITAR MANTENIMIENTO</MenuItem>
-          </MenuList>
-        </Menu>
+        <CrearReductor type={"crear"} />
       </HStack>
       <TableContainer>
         <Table variant="simple" size="sm" h="max-content">
@@ -67,19 +58,25 @@ const Reductores = () => {
               <Th>Bomba Vinculada</Th>
               <Th>Horas</Th>
               <Th>Condicion</Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {reductores.map((reductor) => (
-              <Tr
-                cursor={"pointer"}
-                key={reductor._id}
-                onClick={() => navigate(`${reductor.nombreReductor}`)}
-              >
+              <Tr key={reductor._id}>
                 <Td>{reductor.nombreReductor}</Td>
                 <Td>{reductor.bombaVinculada}</Td>
                 <Td>{reductor.horasReductor}</Td>
                 <Td>{reductor.condicionReductor}</Td>
+                <Td>
+                  <IconButton
+                    cursor={"pointer"}
+                    variant={"link"}
+                    icon={<MdOutlineInfo />}
+                    onClick={() => navigate(`${reductor.nombreReductor}`)}
+                  />
+                  <EditarReductor seleccionado={reductor} />
+                </Td>
               </Tr>
             ))}
           </Tbody>
